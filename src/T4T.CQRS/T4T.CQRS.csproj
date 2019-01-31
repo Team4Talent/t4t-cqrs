@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Benjamin Todts</Authors>
+    <Company>Team4Talent</Company>
+    <Description>Infrastructure to get started using the CQRS pattern.</Description>
   </PropertyGroup>
 
   <ItemGroup>
