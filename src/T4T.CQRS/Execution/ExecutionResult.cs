@@ -28,7 +28,7 @@ namespace T4T.CQRS.Execution
         public static ExecutionResult NotFoundAsWarning(string message = null)
         {
             var result = new ExecutionResult();
-            result.Warnings.Add(ExecutionWarning.NotFound(message));
+            result.Warnings.Add(new ExecutionWarning(message, ExecutionWarningType.NotFound));
 
             return result;
         }
@@ -36,7 +36,7 @@ namespace T4T.CQRS.Execution
         public static ExecutionResult NotFoundAsError(string message = null)
         {
             var result = new ExecutionResult();
-            result.Errors.Add(ExecutionError.NotFound(message));
+            result.Errors.Add(new ExecutionError(message, ExecutionErrorType.NotFound));
 
             return result;
         }
@@ -44,7 +44,23 @@ namespace T4T.CQRS.Execution
         public static ExecutionResult BadRequest(string message = null)
         {
             var result = new ExecutionResult();
-            result.Errors.Add(ExecutionError.BadRequest(message));
+            result.Errors.Add(new ExecutionError(message, ExecutionErrorType.BadRequest));
+
+            return result;
+        }
+
+        public static ExecutionResult Unauthorized(string message = null)
+        {
+            var result = new ExecutionResult();
+            result.Errors.Add(new ExecutionError(message, ExecutionErrorType.Unauthorized));
+
+            return result;
+        }
+
+        public static ExecutionResult Forbidden(string message = null)
+        {
+            var result = new ExecutionResult();
+            result.Errors.Add(new ExecutionError(message, ExecutionErrorType.Forbidden));
 
             return result;
         }
@@ -63,10 +79,13 @@ namespace T4T.CQRS.Execution
             {
                 case InvalidOperationException invalidOperationException:
                 case ArgumentException argumentException:
-                    result.Errors.Add(ExecutionError.BadRequest(e.Message));
+                    result.Errors.Add(new ExecutionError(e.Message, ExecutionErrorType.BadRequest));
+                    break;
+                case UnauthorizedAccessException unauthorizedAccessException:
+                    result.Errors.Add(new ExecutionError(e.Message, ExecutionErrorType.Unauthorized));
                     break;
                 default:
-                    result.Errors.Add(ExecutionError.InternalServerError(e.Message));
+                    result.Errors.Add(new ExecutionError(e.Message, ExecutionErrorType.InternalServerError));
                     break;
             }
 

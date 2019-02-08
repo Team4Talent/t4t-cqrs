@@ -13,14 +13,5 @@
             Message = message;
             Type = type;
         }
-
-        public static ExecutionError InternalServerError(string message)
-            => new ExecutionError(message, ExecutionErrorType.InternalServerError);
-
-        public static ExecutionError BadRequest(string message) 
-            => new ExecutionError(message, ExecutionErrorType.BadRequest);
-
-        public static ExecutionError NotFound(string message)
-            => new ExecutionError(message, ExecutionErrorType.NotFound);
     }
 }

@@ -14,8 +14,5 @@
             Message = message;
             Type = type;
         }
-
-        public static ExecutionWarning NotFound(string message)
-            => new ExecutionWarning(message, ExecutionWarningType.NotFound);
     }
 }

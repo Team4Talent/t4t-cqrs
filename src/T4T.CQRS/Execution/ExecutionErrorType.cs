@@ -4,6 +4,8 @@
     {
         InternalServerError,
         BadRequest,
-        NotFound
+        NotFound,
+        Unauthorized,
+        Forbidden
     }
 }
