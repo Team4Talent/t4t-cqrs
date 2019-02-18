@@ -1,4 +1,4 @@
-﻿namespace T4T.CQRS.Commands
+﻿namespace T4T.CQRS.Commands.Factories
 {
     public interface ICommandHandlerFactory
     {

@@ -2,7 +2,7 @@
 using Autofac;
 using T4T.CQRS.Execution;
 
-namespace T4T.CQRS.Queries
+namespace T4T.CQRS.Queries.Factories
 {
     public class DefaultQueryHandlerFactory : IQueryHandlerFactory
     {

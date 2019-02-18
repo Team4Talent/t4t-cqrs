@@ -1,7 +1,7 @@
 ﻿using System;
 using Autofac;
 
-namespace T4T.CQRS.Commands
+namespace T4T.CQRS.Commands.Factories
 {
     public class DefaultCommandHandlerFactory : ICommandHandlerFactory
     {
