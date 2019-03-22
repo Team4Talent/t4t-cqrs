@@ -12,14 +12,14 @@ namespace T4T.CQRS.Execution
     public class ExecutionResult
     {
         public List<ExecutionError> Errors { get; set; }
-        public List<ExecutionWarning> Warnings { get; set; }
+        public List<string> Warnings { get; set; }
 
         public bool Success => !Errors.Any();
 
         public ExecutionResult()
         {
             Errors =  new List<ExecutionError>();
-            Warnings =  new List<ExecutionWarning>();
+            Warnings =  new List<string>();
         }
 
         public static ExecutionResult Succeeded()
@@ -28,7 +28,7 @@ namespace T4T.CQRS.Execution
         public static ExecutionResult NotFoundAsWarning(string message = null)
         {
             var result = new ExecutionResult();
-            result.Warnings.Add(new ExecutionWarning(message, ExecutionWarningType.NotFound));
+            result.AddWarning(message);
 
             return result;
         }
@@ -106,6 +106,16 @@ namespace T4T.CQRS.Execution
             result.Warnings = Warnings;
 
             return result;
+        }
+
+        public void AddWarning(string warning)
+        {
+            Warnings.Add(warning);
+        }
+
+        public void AddError(string message, ExecutionErrorType type)
+        {
+            Errors.Add(new ExecutionError(message, type));
         }
     }
 }
