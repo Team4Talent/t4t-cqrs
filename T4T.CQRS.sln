@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6158DB9B-819C-4BB1-B26C-A5B38960DDA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4T.CQRS", "src\T4T.CQRS\T4T.CQRS.csproj", "{95A3BFF6-2A08-4C2C-AEFE-52DCE0C67794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T4T.CQRS", "src\T4T.CQRS\T4T.CQRS.csproj", "{95A3BFF6-2A08-4C2C-AEFE-52DCE0C67794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4T.CQRS.Api", "src\T4T.CQRS.Api\T4T.CQRS.Api.csproj", "{77C57C7B-E1A3-43C4-8392-29E45560278D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +19,17 @@ Global
 		{95A3BFF6-2A08-4C2C-AEFE-52DCE0C67794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95A3BFF6-2A08-4C2C-AEFE-52DCE0C67794}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95A3BFF6-2A08-4C2C-AEFE-52DCE0C67794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C57C7B-E1A3-43C4-8392-29E45560278D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C57C7B-E1A3-43C4-8392-29E45560278D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C57C7B-E1A3-43C4-8392-29E45560278D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C57C7B-E1A3-43C4-8392-29E45560278D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{95A3BFF6-2A08-4C2C-AEFE-52DCE0C67794} = {6158DB9B-819C-4BB1-B26C-A5B38960DDA2}
+		{77C57C7B-E1A3-43C4-8392-29E45560278D} = {6158DB9B-819C-4BB1-B26C-A5B38960DDA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00CF24E5-697C-4A1F-9C0B-1E6BBB993BA3}

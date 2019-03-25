@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>T4T.CQRS.Api</id>
+    <title>T4T.CQRS.Api</title>
+    <version>1.0.0</version>
+    <authors>Team4Talent</authors>
+    <owners>Team4Talent</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.NET Core infrastructure to get started using the CQRS pattern.</description>
+    <dependencies>
+      <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.1.1"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="./bin/Release/netstandard2.0/T4T.CQRS.dll" target="lib/netstandard2.0" />
+    <file src="./bin/Release/netstandard2.0/T4T.CQRS.pdb" target="lib/netstandard2.0" />
+  </files>
+</package>

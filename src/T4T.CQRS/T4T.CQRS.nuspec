@@ -10,8 +10,6 @@
     <description>Infrastructure to get started using the CQRS pattern.</description>
     <dependencies>
       <dependency id="Autofac" version="4.8.1"/>
-      <dependency id="Microsoft.AspNetCore.Hosting" version="2.1.1"/>
-      <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.1.1"/>
     </dependencies>
   </metadata>
   <files>
