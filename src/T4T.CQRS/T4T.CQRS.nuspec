@@ -13,7 +13,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="./bin/Release/netstandard2.0/T4T.CQRS.dll" target="lib/netstandard2.0"/>
-    <file src="./bin/Release/netstandard2.0/T4T.CQRS.pdb" target="lib/netstandard2.0"/>
+    <file src="./bin/Debug/netstandard2.0/T4T.CQRS.dll" target="lib/netstandard2.0"/>
+    <file src="./bin/Debug/netstandard2.0/T4T.CQRS.pdb" target="lib/netstandard2.0"/>
   </files>
 </package>
