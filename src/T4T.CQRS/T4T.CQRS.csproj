@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Team4Talent</Authors>
+    <Company>Team4Talent</Company>
+    <Product />
+    <Description>Infrastructure to get started using the CQRS pattern.</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://t4trocks.visualstudio.com/T4T.CQRS</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
