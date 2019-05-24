@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>Latest</LangVersion>
     <Authors>Team4Talent</Authors>
     <Company>Team4Talent</Company>
     <Product />
