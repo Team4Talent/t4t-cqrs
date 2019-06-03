@@ -32,7 +32,7 @@ namespace T4T.CQRS.Extensions
 
         public static ICommandHandler<TCommand> WithLogging<TCommand>(this ICommandHandler<TCommand> commandHandler,
             ILogger<LoggingCommandHandler<TCommand>> logger,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
             where TCommand : class
         {
             return new LoggingCommandHandler<TCommand>(commandHandler, logger, logLevel);
@@ -40,7 +40,7 @@ namespace T4T.CQRS.Extensions
 
         public static ICommandHandler<TCommand> WithLogging<TCommand>(this ICommandHandler<TCommand> commandHandler,
             ILoggerFactory loggerFactory,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
             where TCommand : class
         {
             return new LoggingCommandHandler<TCommand>(commandHandler, loggerFactory, logLevel);

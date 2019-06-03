@@ -18,7 +18,7 @@ namespace T4T.CQRS.Queries
         public LoggingQueryHandler(
             IQueryHandler<TQuery, TResult> innerQueryHandler, 
             ILogger<LoggingQueryHandler<TQuery, TResult>> logger, 
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
         {
             _innerQueryHandler = innerQueryHandler;
             _logger = logger;
@@ -29,7 +29,7 @@ namespace T4T.CQRS.Queries
         public LoggingQueryHandler(
             IQueryHandler<TQuery, TResult> innerQueryHandler,
             ILoggerFactory loggerFactory,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
         {
             _innerQueryHandler = innerQueryHandler;
             _logger = loggerFactory?.CreateLogger<LoggingQueryHandler<TQuery, TResult>>() ??

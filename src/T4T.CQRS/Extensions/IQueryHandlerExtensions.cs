@@ -48,7 +48,7 @@ namespace T4T.CQRS.Extensions
         public static IQueryHandler<TQuery, TResult> WithLogging<TQuery, TResult>(
             this IQueryHandler<TQuery, TResult> queryHandler,
             ILogger<LoggingQueryHandler<TQuery, TResult>> logger,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
             where TQuery : class
             where TResult : ExecutionResult
         {
@@ -58,7 +58,7 @@ namespace T4T.CQRS.Extensions
         public static IQueryHandler<TQuery, TResult> WithLogging<TQuery, TResult>(
             this IQueryHandler<TQuery, TResult> queryHandler,
             ILoggerFactory loggerFactory,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
             where TQuery : class
             where TResult : ExecutionResult
         {

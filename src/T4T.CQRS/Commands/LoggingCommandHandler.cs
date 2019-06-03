@@ -17,7 +17,7 @@ namespace T4T.CQRS.Commands
         public LoggingCommandHandler(
             ICommandHandler<T> innerCommandHandler, 
             ILogger<LoggingCommandHandler<T>> logger,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
         {
             _innerCommandHandler = innerCommandHandler;
             _logger = logger;
@@ -28,7 +28,7 @@ namespace T4T.CQRS.Commands
         public LoggingCommandHandler(
             ICommandHandler<T> innerCommandHandler,
             ILoggerFactory loggerFactory,
-            LogLevel logLevel)
+            LogLevel logLevel = LogLevel.Warning)
         {
             _innerCommandHandler = innerCommandHandler;
             _logger = loggerFactory?.CreateLogger<LoggingCommandHandler<T>>() ??
