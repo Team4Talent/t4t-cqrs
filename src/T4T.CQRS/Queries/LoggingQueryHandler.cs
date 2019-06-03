@@ -44,13 +44,20 @@ namespace T4T.CQRS.Queries
             var executionResult = await _innerQueryHandler.Handle(query, cancellationToken);
 
             if (LogLevel >= LogLevel.Error)
+            {
                 LogErrors(executionResult);
-
-            if (LogLevel >= LogLevel.Information)
+            }
+            else if (LogLevel >= LogLevel.Information)
+            {
+                LogErrors(executionResult);
                 LogWarnings(executionResult);
-
-            if (LogLevel == LogLevel.Trace)
+            }
+            else if (LogLevel == LogLevel.Trace)
+            {
+                LogErrors(executionResult);
+                LogWarnings(executionResult);
                 LogTrace(executionResult);
+            }
 
             return executionResult;
         }
