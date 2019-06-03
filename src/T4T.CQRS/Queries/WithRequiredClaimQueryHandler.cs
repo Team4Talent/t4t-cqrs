@@ -13,7 +13,10 @@ namespace T4T.CQRS.Queries
         private readonly Claim _claim;
         private readonly ClaimsPrincipal _principal;
 
-        public WithRequiredClaimQueryHandler(IQueryHandler<TQuery, TResult> innerQueryHandler, Claim claim, ClaimsPrincipal principal)
+        public WithRequiredClaimQueryHandler(
+            IQueryHandler<TQuery, TResult> innerQueryHandler, 
+            Claim claim, 
+            ClaimsPrincipal principal)
         {
             _innerQueryHandler = innerQueryHandler;
             _claim = claim;
@@ -21,13 +24,10 @@ namespace T4T.CQRS.Queries
         }
 
         public async Task<TResult> Handle(TQuery query,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
-            if (_principal.IsInRole("global_administrator") ||
-                _principal.HasClaim(_claim.Type, _claim.Value))
-            {
+            if (_principal.HasClaim(_claim.Type, _claim.Value))
                 return await _innerQueryHandler.Handle(query, cancellationToken);
-            }
 
             return ExecutionResult.Forbidden().As<TResult>();
         }

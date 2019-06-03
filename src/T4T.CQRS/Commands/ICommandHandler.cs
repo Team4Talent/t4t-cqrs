@@ -13,6 +13,6 @@ namespace T4T.CQRS.Commands
         /// <param name="command">The command to handle.</param>
         /// <param name="cancellationToken">A token to cancel the asynchronous operation with.</param>
         /// <returns>An <see cref="ExecutionResult"/>.</returns>
-        Task<ExecutionResult> Handle(T command, CancellationToken cancellationToken = default(CancellationToken));
+        Task<ExecutionResult> Handle(T command, CancellationToken cancellationToken = default);
     }
 }

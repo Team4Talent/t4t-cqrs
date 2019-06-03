@@ -1,30 +1,49 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Security.Claims;
+using Microsoft.Extensions.Logging;
 using T4T.CQRS.Commands;
 
 namespace T4T.CQRS.Extensions
 {
     public static class ICommandHandlerExtensions
     {
-        public static ICommandHandler<T> WithExceptionHandling<T>(this ICommandHandler<T> commandHandler)
-            where T : class
+        public static ICommandHandler<TCommand> WithExceptionHandling<TCommand>(this ICommandHandler<TCommand> commandHandler)
+            where TCommand : class
         {
-            return new ExceptionHandlingCommandHandler<T>(commandHandler);
+            return new ExceptionHandlingCommandHandler<TCommand>(commandHandler);
         }
 
-        public static ICommandHandler<T> WithLogging<T>(this ICommandHandler<T> commandHandler,
-            ILogger<LoggingCommandHandler<T>> logger,
+        public static ICommandHandler<TCommand> WithAnyOfTheseClaims<TCommand>(
+            this ICommandHandler<TCommand> commandHandler,
+            ClaimsPrincipal principal,
+            params Claim[] claims)
+            where TCommand : class
+        {
+            return new WithAnyOfTheseClaimsCommandHandler<TCommand>(commandHandler, principal, claims);
+        }
+
+        public static ICommandHandler<TCommand> WithRequiredClaim<TCommand>(
+            this ICommandHandler<TCommand> commandHandler,
+            Claim claim,
+            ClaimsPrincipal principal)
+            where TCommand : class
+        {
+            return new ExceptionHandlingCommandHandler<TCommand>(commandHandler);
+        }
+
+        public static ICommandHandler<TCommand> WithLogging<TCommand>(this ICommandHandler<TCommand> commandHandler,
+            ILogger<LoggingCommandHandler<TCommand>> logger,
             LogLevel logLevel)
-            where T : class
+            where TCommand : class
         {
-            return new LoggingCommandHandler<T>(commandHandler, logger, logLevel);
+            return new LoggingCommandHandler<TCommand>(commandHandler, logger, logLevel);
         }
 
-        public static ICommandHandler<T> WithLogging<T>(this ICommandHandler<T> commandHandler,
+        public static ICommandHandler<TCommand> WithLogging<TCommand>(this ICommandHandler<TCommand> commandHandler,
             ILoggerFactory loggerFactory,
             LogLevel logLevel)
-            where T : class
+            where TCommand : class
         {
-            return new LoggingCommandHandler<T>(commandHandler, loggerFactory, logLevel);
+            return new LoggingCommandHandler<TCommand>(commandHandler, loggerFactory, logLevel);
         }
     }
 }

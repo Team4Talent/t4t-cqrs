@@ -14,6 +14,6 @@ namespace T4T.CQRS.Queries
         /// <param name="query">The query to handle.</param>
         /// <param name="cancellationToken">A token to cancel the asynchronous operation with.</param>
         /// <returns>An instance of <typeparamref name="TResult"/>, which derives from <see cref="ExecutionResult"/>.</returns>
-        Task<TResult> Handle(TQuery query, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TResult> Handle(TQuery query, CancellationToken cancellationToken = default);
     }
 }

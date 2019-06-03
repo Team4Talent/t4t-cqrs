@@ -24,7 +24,7 @@ namespace T4T.CQRS.Queries
         }
 
         public async Task<TResult> Handle(TQuery query,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(_userId))
                 return ExecutionResult.Forbidden().As<TResult>();
