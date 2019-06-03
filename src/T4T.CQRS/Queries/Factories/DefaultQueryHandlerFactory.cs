@@ -1,6 +1,8 @@
 ﻿using System;
 using Autofac;
+using Microsoft.Extensions.Logging;
 using T4T.CQRS.Execution;
+using T4T.CQRS.Extensions;
 
 namespace T4T.CQRS.Queries.Factories
 {
@@ -19,8 +21,10 @@ namespace T4T.CQRS.Queries.Factories
         {
             var queryHandler = _container.Resolve<IQueryHandler<TQuery, TResult>>() ??
                                throw new ArgumentException($"Could not resolve an IQueryHandler for {typeof(TQuery).Name}.", innerException: null);
+            var loggerFactory = _container.Resolve<ILoggerFactory>();
 
-            return new ExceptionHandlingQueryHandler<TQuery, TResult>(queryHandler);
+            return new ExceptionHandlingQueryHandler<TQuery, TResult>(queryHandler)
+                .WithLogging(loggerFactory, LogLevel.Warning);
         }
     }
 }

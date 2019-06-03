@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Claims;
+using Microsoft.Extensions.Logging;
 using T4T.CQRS.Execution;
 using T4T.CQRS.Queries;
 
@@ -42,6 +43,26 @@ namespace T4T.CQRS.Extensions
             where TResult : ExecutionResult
         {
             return new WithUserIdQueryHandler<TQuery, TResult>(queryHandler, userId, userIdAccessor);
+        }
+
+        public static IQueryHandler<TQuery, TResult> WithLogging<TQuery, TResult>(
+            this IQueryHandler<TQuery, TResult> queryHandler,
+            ILogger<LoggingQueryHandler<TQuery, TResult>> logger,
+            LogLevel logLevel)
+            where TQuery : class
+            where TResult : ExecutionResult
+        {
+            return new LoggingQueryHandler<TQuery, TResult>(queryHandler, logger, logLevel);
+        }
+
+        public static IQueryHandler<TQuery, TResult> WithLogging<TQuery, TResult>(
+            this IQueryHandler<TQuery, TResult> queryHandler,
+            ILoggerFactory loggerFactory,
+            LogLevel logLevel)
+            where TQuery : class
+            where TResult : ExecutionResult
+        {
+            return new LoggingQueryHandler<TQuery, TResult>(queryHandler, loggerFactory, logLevel);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using Autofac;
+using Microsoft.Extensions.Logging;
+using T4T.CQRS.Extensions;
 
 namespace T4T.CQRS.Commands.Factories
 {
@@ -17,8 +19,10 @@ namespace T4T.CQRS.Commands.Factories
         {
             var commandHandler = _container.Resolve<ICommandHandler<T>>() ?? 
                                  throw new ArgumentException($"Could not resolve an ICommandHandler for {typeof(T).Name}.", innerException: null);
-                
-            return new ExceptionHandlingCommandHandler<T>(commandHandler);
+            var loggerFactory = _container.Resolve<ILoggerFactory>();
+
+            return new ExceptionHandlingCommandHandler<T>(commandHandler)
+                .WithLogging(loggerFactory, LogLevel.Warning);
         }
     }
 }
