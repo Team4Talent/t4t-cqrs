@@ -23,6 +23,9 @@ namespace T4T.CQRS.Api
             if (queryResult.Errors.Any(e => e.Type == ExecutionErrorType.Forbidden))
                 return new ObjectResult(queryResult) {StatusCode = (int) HttpStatusCode.Forbidden};
 
+            if (queryResult.Errors.Any(e => e.Type == ExecutionErrorType.Unauthorized))
+                return new ObjectResult(queryResult) { StatusCode = (int)HttpStatusCode.Unauthorized };
+
             return new OkObjectResult(queryResult);
         }
 
