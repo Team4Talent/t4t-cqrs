@@ -10,13 +10,13 @@ namespace T4T.CQRS.Commands
         where T : class
     {
         private readonly ICommandHandler<T> _innerCommandHandler;
-        private readonly ILogger<LoggingCommandHandler<T>> _logger;
+        private readonly ILogger<ICommandHandler<T>> _logger;
 
         public LogLevel LogLevel { get; }
 
         public LoggingCommandHandler(
             ICommandHandler<T> innerCommandHandler, 
-            ILogger<LoggingCommandHandler<T>> logger,
+            ILogger<ICommandHandler<T>> logger,
             LogLevel logLevel = LogLevel.Warning)
         {
             _innerCommandHandler = innerCommandHandler;
@@ -31,14 +31,30 @@ namespace T4T.CQRS.Commands
             LogLevel logLevel = LogLevel.Warning)
         {
             _innerCommandHandler = innerCommandHandler;
-            _logger = loggerFactory?.CreateLogger<LoggingCommandHandler<T>>() ??
-                      new NullLogger<LoggingCommandHandler<T>>();
+            _logger = loggerFactory?.CreateLogger<ICommandHandler<T>>() ?? new NullLogger<ICommandHandler<T>>();
 
             LogLevel = logLevel;
         }
 
         public async Task<ExecutionResult> Handle(T command, CancellationToken cancellationToken = default)
         {
+            void LogErrors(ExecutionResult result)
+            {
+                foreach (var error in result.Errors)
+                    _logger.LogError(error.Message, error);
+            }
+
+            void LogWarnings(ExecutionResult result)
+            {
+                foreach (var warning in result.Warnings)
+                    _logger.LogWarning(warning, result);
+            }
+
+            void LogTrace(ExecutionResult result)
+            {
+                _logger.LogTrace($"Handled Command {typeof(T).Name}, result: ", result);
+            }
+
             var executionResult = await _innerCommandHandler.Handle(command, cancellationToken);
 
             if (LogLevel >= LogLevel.Error)
@@ -58,23 +74,6 @@ namespace T4T.CQRS.Commands
             }  
 
             return executionResult;
-        }
-
-        private void LogErrors(ExecutionResult executionResult)
-        {
-            foreach (var error in executionResult.Errors)
-                _logger.LogError(error.Message, error);
-        }
-
-        private void LogWarnings(ExecutionResult executionResult)
-        {
-            foreach (var warning in executionResult.Warnings)
-                _logger.LogWarning(warning, executionResult);
-        }
-
-        private void LogTrace(ExecutionResult executionResult)
-        {
-            _logger.LogTrace($"Handled Command {typeof(T).Name}, result: ", executionResult);
         }
     }
 }

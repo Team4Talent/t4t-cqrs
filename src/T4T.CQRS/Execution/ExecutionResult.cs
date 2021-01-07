@@ -6,7 +6,7 @@ namespace T4T.CQRS.Execution
 {
     /// <summary>
     /// The result of executing a query or a command.
-    /// Contains a list of <see cref="ExecutionError"/> and <see cref="ExecutionWarning"/>.
+    /// Contains a list of <see cref="ExecutionError"/>s and/or Warnings.
     /// The execution is considered successful when no errors occurred.
     /// </summary>
     public class ExecutionResult

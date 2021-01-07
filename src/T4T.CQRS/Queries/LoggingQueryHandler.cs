@@ -11,13 +11,13 @@ namespace T4T.CQRS.Queries
         where TResult : ExecutionResult
     {
         private readonly IQueryHandler<TQuery, TResult> _innerQueryHandler;
-        private readonly ILogger<LoggingQueryHandler<TQuery, TResult>> _logger;
+        private readonly ILogger<IQueryHandler<TQuery, TResult>> _logger;
 
         public LogLevel LogLevel { get; }
 
         public LoggingQueryHandler(
             IQueryHandler<TQuery, TResult> innerQueryHandler, 
-            ILogger<LoggingQueryHandler<TQuery, TResult>> logger, 
+            ILogger<IQueryHandler<TQuery, TResult>> logger, 
             LogLevel logLevel = LogLevel.Warning)
         {
             _innerQueryHandler = innerQueryHandler;
@@ -32,8 +32,7 @@ namespace T4T.CQRS.Queries
             LogLevel logLevel = LogLevel.Warning)
         {
             _innerQueryHandler = innerQueryHandler;
-            _logger = loggerFactory?.CreateLogger<LoggingQueryHandler<TQuery, TResult>>() ??
-                      new NullLogger<LoggingQueryHandler<TQuery, TResult>>();
+            _logger = loggerFactory?.CreateLogger<IQueryHandler<TQuery, TResult>>() ?? new NullLogger<IQueryHandler<TQuery, TResult>>();
 
             LogLevel = logLevel;
         }
@@ -41,6 +40,23 @@ namespace T4T.CQRS.Queries
         public async Task<TResult> Handle(TQuery query, 
             CancellationToken cancellationToken = default)
         {
+            void LogErrors(ExecutionResult result)
+            {
+                foreach (var error in result.Errors)
+                    _logger.LogError(error.Message, error);
+            }
+
+            void LogWarnings(ExecutionResult result)
+            {
+                foreach (var warning in result.Warnings)
+                    _logger.LogWarning(warning, result);
+            }
+
+            void LogTrace(ExecutionResult result)
+            {
+                _logger.LogTrace($"Handled Query {typeof(TQuery).Name}, result: ", result);
+            }
+
             var executionResult = await _innerQueryHandler.Handle(query, cancellationToken);
 
             if (LogLevel >= LogLevel.Error)
@@ -60,23 +76,6 @@ namespace T4T.CQRS.Queries
             }
 
             return executionResult;
-        }
-
-        private void LogErrors(ExecutionResult executionResult)
-        {
-            foreach (var error in executionResult.Errors)
-                _logger.LogError(error.Message, error);
-        }
-
-        private void LogWarnings(ExecutionResult executionResult)
-        {
-            foreach (var warning in executionResult.Warnings)
-                _logger.LogWarning(warning, executionResult);
-        }
-
-        private void LogTrace(ExecutionResult executionResult)
-        {
-            _logger.LogTrace($"Handled Query {typeof(TQuery).Name}, result: ", executionResult);
         }
     }
 }

@@ -9,17 +9,17 @@ namespace T4T.CQRS.Commands
         where TCommand : class
     {
         private readonly ICommandHandler<TCommand> _innerCommandHandler;
-        private readonly Claim _claim;
         private readonly ClaimsPrincipal _principal;
+        private readonly Claim _claim;
 
         public WithRequiredClaimCommandHandler(
             ICommandHandler<TCommand> innerCommandHandler,
-            Claim claim,
-            ClaimsPrincipal principal)
+            ClaimsPrincipal principal,
+            Claim claim)
         {
             _innerCommandHandler = innerCommandHandler;
-            _claim = claim;
             _principal = principal;
+            _claim = claim;
         }
 
         public async Task<ExecutionResult> Handle(TCommand command, 

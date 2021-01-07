@@ -15,7 +15,7 @@ namespace T4T.CQRS.Extensions
             where TQuery : class
             where TResult : ExecutionResult
         {
-            return new WithRequiredClaimQueryHandler<TQuery, TResult>(queryHandler, claim, principal);
+            return new WithRequiredClaimQueryHandler<TQuery, TResult>(queryHandler, principal, claim);
         }
 
         public static IQueryHandler<TQuery, TResult> WithAnyOfTheseClaims<TQuery, TResult>(
@@ -47,7 +47,7 @@ namespace T4T.CQRS.Extensions
 
         public static IQueryHandler<TQuery, TResult> WithLogging<TQuery, TResult>(
             this IQueryHandler<TQuery, TResult> queryHandler,
-            ILogger<LoggingQueryHandler<TQuery, TResult>> logger,
+            ILogger<IQueryHandler<TQuery, TResult>> logger,
             LogLevel logLevel = LogLevel.Warning)
             where TQuery : class
             where TResult : ExecutionResult

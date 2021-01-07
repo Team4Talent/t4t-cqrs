@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <LangVersion>Latest</LangVersion>
     <Authors>Team4Talent</Authors>
     <Company>Team4Talent</Company>
     <Product />
     <Description>Infrastructure to get started using the CQRS pattern.</Description>
     <PackageProjectUrl></PackageProjectUrl>
-    <RepositoryUrl>https://t4trocks.visualstudio.com/T4T.CQRS</RepositoryUrl>
+    <RepositoryUrl>https://https://github.com/Team4Talent/t4t-cqrs</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -17,8 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

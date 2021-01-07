@@ -10,13 +10,13 @@ namespace T4T.CQRS.Queries
         where TResult : ExecutionResult
     {
         private readonly IQueryHandler<TQuery, TResult> _innerQueryHandler;
-        private readonly Claim _claim;
         private readonly ClaimsPrincipal _principal;
+        private readonly Claim _claim;
 
         public WithRequiredClaimQueryHandler(
-            IQueryHandler<TQuery, TResult> innerQueryHandler, 
-            Claim claim, 
-            ClaimsPrincipal principal)
+            IQueryHandler<TQuery, TResult> innerQueryHandler,
+            ClaimsPrincipal principal,
+            Claim claim)
         {
             _innerQueryHandler = innerQueryHandler;
             _claim = claim;

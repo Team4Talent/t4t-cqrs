@@ -27,11 +27,11 @@ namespace T4T.CQRS.Extensions
             ClaimsPrincipal principal)
             where TCommand : class
         {
-            return new ExceptionHandlingCommandHandler<TCommand>(commandHandler);
+            return new WithRequiredClaimCommandHandler<TCommand>(commandHandler, principal, claim);
         }
 
         public static ICommandHandler<TCommand> WithLogging<TCommand>(this ICommandHandler<TCommand> commandHandler,
-            ILogger<LoggingCommandHandler<TCommand>> logger,
+            ILogger<ICommandHandler<TCommand>> logger,
             LogLevel logLevel = LogLevel.Warning)
             where TCommand : class
         {

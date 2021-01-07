@@ -19,7 +19,7 @@ namespace T4T.CQRS.Api
         }
 
         protected async Task<ExecutionResult> HandleCommand<T>(T command,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
             where T : class
         {
             var factory = _abstractCommandHandlerFactory.GetFactoryForCommand<T>();
@@ -28,7 +28,7 @@ namespace T4T.CQRS.Api
         }
 
         protected async Task<TResult> HandleQuery<TQuery, TResult>(TQuery query,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
             where TQuery : class
             where TResult : ExecutionResult
         {

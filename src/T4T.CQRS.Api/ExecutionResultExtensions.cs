@@ -33,10 +33,8 @@ namespace T4T.CQRS.Api
         {
             var result = commandResult.ToActionResult();
 
-            return !(result is OkObjectResult)
-                ? result
-                : new CreatedResult(location,
-                    new {id, commandResult.Errors, commandResult.Warnings, commandResult.Success});
+            return !(result is OkObjectResult) ? result : new CreatedResult(location,
+                    new {id, errors = commandResult.Errors, warnings = commandResult.Warnings, success = commandResult.Success});
         }
     }
 }
