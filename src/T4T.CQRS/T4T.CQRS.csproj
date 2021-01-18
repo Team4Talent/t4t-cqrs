@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
     <LangVersion>Latest</LangVersion>
-    <Authors>Team4Talent</Authors>
+    <Authors>Benjamin Todts</Authors>
     <Company>Team4Talent</Company>
-    <Product />
     <Description>Infrastructure to get started using the CQRS pattern.</Description>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://https://github.com/Team4Talent/t4t-cqrs</RepositoryUrl>

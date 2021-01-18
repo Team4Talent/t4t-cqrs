@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Authors>Team4Talent</Authors>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <LangVersion>Latest</LangVersion>
+    <Authors>Benjamin Todts</Authors>
     <Company>Team4Talent</Company>
-    <Product />
     <Description>Contains the ApiControllerBase class and ExecutionResult.ToActionResult() extension.</Description>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/Team4Talent/t4t-cqrs</RepositoryUrl>
