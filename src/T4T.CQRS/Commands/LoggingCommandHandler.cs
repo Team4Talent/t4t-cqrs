@@ -12,10 +12,8 @@ namespace T4T.CQRS.Commands
         private readonly ICommandHandler<T> _innerCommandHandler;
         private readonly ILogger<ICommandHandler<T>> _logger;
 
-        public LogLevel LogLevel { get; }
-
         public LoggingCommandHandler(
-            ICommandHandler<T> innerCommandHandler, 
+            ICommandHandler<T> innerCommandHandler,
             ILogger<ICommandHandler<T>> logger,
             LogLevel logLevel = LogLevel.Warning)
         {
@@ -35,6 +33,8 @@ namespace T4T.CQRS.Commands
 
             LogLevel = logLevel;
         }
+
+        public LogLevel LogLevel { get; }
 
         public async Task<ExecutionResult> Handle(T command, CancellationToken cancellationToken = default)
         {
@@ -71,7 +71,7 @@ namespace T4T.CQRS.Commands
                 LogErrors(executionResult);
                 LogWarnings(executionResult);
                 LogTrace(executionResult);
-            }  
+            }
 
             return executionResult;
         }

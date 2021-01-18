@@ -6,7 +6,8 @@ namespace T4T.CQRS.Extensions
 {
     public static class ICommandHandlerExtensions
     {
-        public static ICommandHandler<TCommand> WithExceptionHandling<TCommand>(this ICommandHandler<TCommand> commandHandler)
+        public static ICommandHandler<TCommand> WithExceptionHandling<TCommand>(
+            this ICommandHandler<TCommand> commandHandler)
             where TCommand : class
         {
             return new ExceptionHandlingCommandHandler<TCommand>(commandHandler);

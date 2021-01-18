@@ -12,7 +12,8 @@ namespace T4T.CQRS.Api
         private readonly IAbstractCommandHandlerFactory _abstractCommandHandlerFactory;
         private readonly IAbstractQueryHandlerFactory _abstractQueryHandlerFactory;
 
-        protected ApiControllerBase(IAbstractCommandHandlerFactory abstractCommandHandlerFactory, IAbstractQueryHandlerFactory abstractQueryHandlerFactory)
+        protected ApiControllerBase(IAbstractCommandHandlerFactory abstractCommandHandlerFactory,
+            IAbstractQueryHandlerFactory abstractQueryHandlerFactory)
         {
             _abstractCommandHandlerFactory = abstractCommandHandlerFactory;
             _abstractQueryHandlerFactory = abstractQueryHandlerFactory;

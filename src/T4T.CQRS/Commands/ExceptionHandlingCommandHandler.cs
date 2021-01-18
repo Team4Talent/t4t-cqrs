@@ -15,7 +15,7 @@ namespace T4T.CQRS.Commands
             _innerCommandHandler = innerCommandHandler;
         }
 
-        public async Task<ExecutionResult> Handle(T command, 
+        public async Task<ExecutionResult> Handle(T command,
             CancellationToken cancellationToken = default)
         {
             try

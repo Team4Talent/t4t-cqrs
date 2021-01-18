@@ -13,11 +13,9 @@ namespace T4T.CQRS.Queries
         private readonly IQueryHandler<TQuery, TResult> _innerQueryHandler;
         private readonly ILogger<IQueryHandler<TQuery, TResult>> _logger;
 
-        public LogLevel LogLevel { get; }
-
         public LoggingQueryHandler(
-            IQueryHandler<TQuery, TResult> innerQueryHandler, 
-            ILogger<IQueryHandler<TQuery, TResult>> logger, 
+            IQueryHandler<TQuery, TResult> innerQueryHandler,
+            ILogger<IQueryHandler<TQuery, TResult>> logger,
             LogLevel logLevel = LogLevel.Warning)
         {
             _innerQueryHandler = innerQueryHandler;
@@ -32,12 +30,15 @@ namespace T4T.CQRS.Queries
             LogLevel logLevel = LogLevel.Warning)
         {
             _innerQueryHandler = innerQueryHandler;
-            _logger = loggerFactory?.CreateLogger<IQueryHandler<TQuery, TResult>>() ?? new NullLogger<IQueryHandler<TQuery, TResult>>();
+            _logger = loggerFactory?.CreateLogger<IQueryHandler<TQuery, TResult>>() ??
+                      new NullLogger<IQueryHandler<TQuery, TResult>>();
 
             LogLevel = logLevel;
         }
 
-        public async Task<TResult> Handle(TQuery query, 
+        public LogLevel LogLevel { get; }
+
+        public async Task<TResult> Handle(TQuery query,
             CancellationToken cancellationToken = default)
         {
             void LogErrors(ExecutionResult result)

@@ -8,11 +8,11 @@ namespace T4T.CQRS.Commands
         where T : class
     {
         /// <summary>
-        /// Asynchronously handles the given command <typeparamref name="T"/>.
+        ///     Asynchronously handles the given command <typeparamref name="T" />.
         /// </summary>
         /// <param name="command">The command to handle.</param>
         /// <param name="cancellationToken">A token to cancel the asynchronous operation with.</param>
-        /// <returns>An <see cref="ExecutionResult"/>.</returns>
+        /// <returns>An <see cref="ExecutionResult" />.</returns>
         Task<ExecutionResult> Handle(T command, CancellationToken cancellationToken = default);
     }
 }

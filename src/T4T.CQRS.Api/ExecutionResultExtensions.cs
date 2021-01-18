@@ -24,7 +24,7 @@ namespace T4T.CQRS.Api
                 return new ObjectResult(queryResult) {StatusCode = (int) HttpStatusCode.Forbidden};
 
             if (queryResult.Errors.Any(e => e.Type == ExecutionErrorType.Unauthorized))
-                return new ObjectResult(queryResult) { StatusCode = (int)HttpStatusCode.Unauthorized };
+                return new ObjectResult(queryResult) {StatusCode = (int) HttpStatusCode.Unauthorized};
 
             return new OkObjectResult(queryResult);
         }
@@ -33,8 +33,14 @@ namespace T4T.CQRS.Api
         {
             var result = commandResult.ToActionResult();
 
-            return !(result is OkObjectResult) ? result : new CreatedResult(location,
-                    new {id, errors = commandResult.Errors, warnings = commandResult.Warnings, success = commandResult.Success});
+            return !(result is OkObjectResult)
+                ? result
+                : new CreatedResult(location,
+                    new
+                    {
+                        id, errors = commandResult.Errors, warnings = commandResult.Warnings,
+                        success = commandResult.Success
+                    });
         }
     }
 }

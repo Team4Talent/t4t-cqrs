@@ -16,7 +16,7 @@ namespace T4T.CQRS.Queries
             _innerQueryHandler = innerQueryHandler;
         }
 
-        public async Task<TResult> Handle(TQuery query, 
+        public async Task<TResult> Handle(TQuery query,
             CancellationToken cancellationToken = default)
         {
             try
@@ -25,7 +25,7 @@ namespace T4T.CQRS.Queries
             }
             catch (Exception e)
             {
-               return ExecutionResult.FromException(e).As<TResult>();
+                return ExecutionResult.FromException(e).As<TResult>();
             }
         }
     }

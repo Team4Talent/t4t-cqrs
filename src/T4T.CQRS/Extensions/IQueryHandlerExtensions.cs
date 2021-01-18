@@ -28,7 +28,8 @@ namespace T4T.CQRS.Extensions
             return new WithAnyOfTheseClaimsQueryHandler<TQuery, TResult>(queryHandler, principal, claims);
         }
 
-        public static IQueryHandler<TQuery, TResult> WithExceptionHandling<TQuery, TResult>(this IQueryHandler<TQuery, TResult> queryHandler)
+        public static IQueryHandler<TQuery, TResult> WithExceptionHandling<TQuery, TResult>(
+            this IQueryHandler<TQuery, TResult> queryHandler)
             where TQuery : class
             where TResult : ExecutionResult
         {

@@ -14,8 +14,8 @@ namespace T4T.CQRS.Queries
         private readonly Func<TResult, string> _userIdAccessor;
 
         public WithUserIdQueryHandler(
-            IQueryHandler<TQuery, TResult> innerQueryHandler, 
-            string userId, 
+            IQueryHandler<TQuery, TResult> innerQueryHandler,
+            string userId,
             Func<TResult, string> userIdAccessor)
         {
             _innerQueryHandler = innerQueryHandler;
