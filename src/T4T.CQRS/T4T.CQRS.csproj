@@ -5,7 +5,7 @@
     <LangVersion>Latest</LangVersion>
     <Authors>Benjamin Todts</Authors>
     <Company>Team4Talent</Company>
-    <Description>Infrastructure to get started using the CQRS pattern.</Description>
+    <Description>Light-weight infrastructure to get started using the CQRS pattern.</Description>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://https://github.com/Team4Talent/t4t-cqrs</RepositoryUrl>
     <Configurations>Debug;Release;Sample;Packages</Configurations>

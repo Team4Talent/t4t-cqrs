@@ -69,7 +69,7 @@ namespace T4T.CQRS.Queries
                 LogErrors(executionResult);
                 LogWarnings(executionResult);
             }
-            else if (LogLevel == LogLevel.Trace)
+            else if (LogLevel >= LogLevel.Trace)
             {
                 LogErrors(executionResult);
                 LogWarnings(executionResult);

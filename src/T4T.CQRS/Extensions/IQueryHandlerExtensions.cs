@@ -36,14 +36,15 @@ namespace T4T.CQRS.Extensions
             return new ExceptionHandlingQueryHandler<TQuery, TResult>(queryHandler);
         }
 
-        public static IQueryHandler<TQuery, TResult> WithUserId<TQuery, TResult>(
+        public static IQueryHandler<TQuery, TResult> WithUserId<TUserId, TQuery, TResult>(
             this IQueryHandler<TQuery, TResult> queryHandler,
-            string userId,
-            Func<TResult, string> userIdAccessor)
+            TUserId userId,
+            Func<TResult, TUserId> userIdAccessor)
             where TQuery : class
+            where TUserId : IEquatable<TUserId>
             where TResult : ExecutionResult
         {
-            return new WithUserIdQueryHandler<TQuery, TResult>(queryHandler, userId, userIdAccessor);
+            return new WithUserIdQueryHandler<TUserId, TQuery, TResult>(queryHandler, userId, userIdAccessor);
         }
 
         public static IQueryHandler<TQuery, TResult> WithLogging<TQuery, TResult>(

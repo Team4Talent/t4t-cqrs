@@ -104,7 +104,8 @@ namespace T4T.CQRS.Execution
         public TResult As<TResult>()
             where TResult : ExecutionResult
         {
-            var result = (TResult) Activator.CreateInstance(typeof(TResult));
+            var result = (TResult) Activator.CreateInstance(typeof(TResult))
+                ?? throw new InvalidCastException($"Failed to cast ExecutionResult to {typeof(TResult)}");
             result.Errors = Errors;
             result.Warnings = Warnings;
 
