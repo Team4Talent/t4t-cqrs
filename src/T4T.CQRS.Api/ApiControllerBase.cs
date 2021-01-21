@@ -1,9 +1,12 @@
-﻿using System.Threading;
+﻿using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using T4T.CQRS.Commands.Factories;
 using T4T.CQRS.Execution;
 using T4T.CQRS.Queries.Factories;
+
+[assembly:InternalsVisibleTo("T4T.CQRS.Api.Tests")]
 
 namespace T4T.CQRS.Api
 {
@@ -19,7 +22,7 @@ namespace T4T.CQRS.Api
             _abstractQueryHandlerFactory = abstractQueryHandlerFactory;
         }
 
-        protected async Task<ExecutionResult> HandleCommand<T>(T command,
+        protected internal async Task<ExecutionResult> HandleCommand<T>(T command,
             CancellationToken cancellationToken = default)
             where T : class
         {
@@ -28,7 +31,7 @@ namespace T4T.CQRS.Api
             return await commandHandler.Handle(command, cancellationToken);
         }
 
-        protected async Task<TResult> HandleQuery<TQuery, TResult>(TQuery query,
+        protected internal async Task<TResult> HandleQuery<TQuery, TResult>(TQuery query,
             CancellationToken cancellationToken = default)
             where TQuery : class
             where TResult : ExecutionResult
