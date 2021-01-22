@@ -1,5 +1,7 @@
 # T4T.CQRS
 
+![example branch parameter](https://github.com/team4talent/t4t-cqrs/workflows/Github%20Actions/badge.svg?branch=main)
+
 Contains infrastructure and fluent extensions to get started using the CQRS pattern.
 
 This repository contains the following projects:
