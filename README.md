@@ -40,7 +40,7 @@ The following demonstrates the quickest way to get started:
 builder.RegisterModule(new CQRSModule());
 ```
 
-2. Create your Queries and Command, these are simple POCOs:
+2. Create your Queries and Commands, these are simple POCOs:
 
 ```csharp
 public class GetTodosQuery
