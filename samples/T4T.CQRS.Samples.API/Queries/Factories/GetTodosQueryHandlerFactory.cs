@@ -1,4 +1,5 @@
 ﻿using T4T.CQRS.Execution;
+using T4T.CQRS.Extensions;
 using T4T.CQRS.Queries;
 using T4T.CQRS.Queries.Factories;
 using T4T.CQRS.Samples.API.Queries.Handlers;
@@ -11,7 +12,8 @@ namespace T4T.CQRS.Samples.API.Queries.Factories
             where TQuery : class 
             where TResult : ExecutionResult
         {
-            return (IQueryHandler<TQuery, TResult>) new GetTodosQueryHandler();
+            return (IQueryHandler<TQuery, TResult>) new GetTodoItemQueryHandler()
+                .WithExceptionHandling(); // Extensions methods are syntactic sugar to fluently decorate your handler.
         }
     }
 }
