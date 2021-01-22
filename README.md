@@ -1,6 +1,6 @@
 # T4T.CQRS
 
-Contains light-weight infrastructure to get started using the CQRS pattern.
+Contains infrastructure and fluent extensions to get started using the CQRS pattern.
 
 This repository contains the following projects:
 
@@ -20,7 +20,7 @@ This repository contains the following projects:
 
 > No packages have yet been published.
 
-T4T.CQRS is available on [NuGet](https://www.nuget.org):
+T4T.CQRS will be available on [NuGet](https://www.nuget.org) soon 🤞:
 
 ```shell
 dotnet add package T4T.CQRS
@@ -34,7 +34,7 @@ See the sample to see a fully working application using all three packages. Comm
 
 The following demonstrates the quickest way to get started:
 
-1. Load the `CQRSModule` from `T4T.CQRS.Autofac`, this module will automaticall register all the handlers found in the given assemblies:
+1. Load the `CQRSModule` from `T4T.CQRS.Autofac`, this module will automatically register all the handlers found in the given assemblies:
 
 ```csharp
 builder.RegisterModule(new CQRSModule());

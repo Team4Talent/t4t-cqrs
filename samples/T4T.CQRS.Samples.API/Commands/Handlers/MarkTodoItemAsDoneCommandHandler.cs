@@ -25,7 +25,7 @@ namespace T4T.CQRS.Samples.API.Commands.Handlers
             return Task.FromResult(result);
 
             // ExecutionResult exposes a set of factory methods, e.g.:
-            // var result = ExecutionResult.Forbidden("You are not authorized to access this item."); //T4T.CQRS.Api will return this message to the client
+            // var result = ExecutionResult.Forbidden("You are not authorized to access this item."); //T4T.CQRS.Api will return this message to the client along with status code 403.
         }
     }
 }

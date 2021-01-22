@@ -28,7 +28,8 @@ namespace T4T.CQRS.Samples.API.Controllers
 
             // HandleQuery is graciously provided by T4T.CQRS.Api.ApiControllerBase
             var result = await HandleQuery<GetTodosQuery, GetTodosQueryResult>(query, token);
-            // T4T.CQRS.Api's ToActionResult extensions method will transform the ExecutionResult is a nice REST response
+
+            // T4T.CQRS.Api's ToActionResult extension method will transform the ExecutionResult in a nice REST response
             return result.ToActionResult();
         }
 
@@ -38,7 +39,7 @@ namespace T4T.CQRS.Samples.API.Controllers
             var query = new GetTodoItemQuery(id);
             var result = await HandleQuery<GetTodoItemQuery, GetTodoItemQueryResult>(query, token);
 
-            // If for example "ExecutionResult.Forbidden(message)" was used, ToActionResult will build an appropriate StatusCodResult
+            // If for example "ExecutionResult.Forbidden(message)" was invoked in any of the handlers, ToActionResult will build an appropriate StatusCodeResult
             // and include the message in the response body.
             return result.ToActionResult();
         }
@@ -47,8 +48,6 @@ namespace T4T.CQRS.Samples.API.Controllers
         public async Task<IActionResult> MarkAsDone(int id, CancellationToken token = default)
         {
             var command = new MarkTodoItemAsDoneCommand(id);
-
-            // HandleCommand is graciously provided by T4T.CQRS.Api.ApiControllerBase
             var result = await HandleCommand(command, token);
             return result.ToActionResult();
         }
