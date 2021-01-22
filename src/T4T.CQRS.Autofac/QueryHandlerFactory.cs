@@ -21,12 +21,11 @@ namespace T4T.CQRS.Autofac
             where TQuery : class 
             where TResult : ExecutionResult
         {
-            var queryHandler = _container.Resolve<IQueryHandler<TQuery, TResult>>() ??
-                               throw new ArgumentException($"Could not resolve an IQueryHandler for {typeof(TQuery).Name}.", innerException: null);
+            var queryHandler = _container.Resolve<IQueryHandler<TQuery, TResult>>();
             var loggerFactory = _container.Resolve<ILoggerFactory>();
 
-            return new ExceptionHandlingQueryHandler<TQuery, TResult>(queryHandler)
-                .WithLogging(loggerFactory, LogLevel.Warning);
+            return new LoggingQueryHandler<TQuery, TResult> (queryHandler, loggerFactory)
+                .WithExceptionHandling();
         }
     }
 }

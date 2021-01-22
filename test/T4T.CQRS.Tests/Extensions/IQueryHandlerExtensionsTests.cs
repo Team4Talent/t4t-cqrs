@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using T4T.CQRS.Extensions;
 using T4T.CQRS.Queries;
+using T4T.CQRS.Tests.Fakes;
 using T4T.CQRS.Tests.Queries;
 using Xunit;
 

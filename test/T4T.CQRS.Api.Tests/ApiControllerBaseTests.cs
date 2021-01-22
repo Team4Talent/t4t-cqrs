@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Moq;
+using T4T.CQRS.Api.Tests.Fakes;
 using T4T.CQRS.Commands;
 using T4T.CQRS.Commands.Factories;
 using T4T.CQRS.Execution;

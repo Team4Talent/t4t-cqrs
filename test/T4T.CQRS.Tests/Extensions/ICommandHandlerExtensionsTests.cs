@@ -5,6 +5,7 @@ using Moq;
 using T4T.CQRS.Commands;
 using T4T.CQRS.Extensions;
 using T4T.CQRS.Tests.Commands;
+using T4T.CQRS.Tests.Fakes;
 using Xunit;
 
 namespace T4T.CQRS.Tests.Extensions

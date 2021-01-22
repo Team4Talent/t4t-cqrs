@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Moq;
 using T4T.CQRS.Execution;
 using T4T.CQRS.Queries;
+using T4T.CQRS.Tests.Fakes;
 using Xunit;
 
 namespace T4T.CQRS.Tests.Queries

@@ -1,4 +1,4 @@
-﻿namespace T4T.CQRS.Api.Tests
+﻿namespace T4T.CQRS.Tests.Fakes
 {
     public class FakeCommand
     {

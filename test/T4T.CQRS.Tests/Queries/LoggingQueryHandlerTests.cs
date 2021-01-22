@@ -5,6 +5,7 @@ using Moq;
 using Moq.Contrib.ExpressionBuilders.Logging;
 using T4T.CQRS.Execution;
 using T4T.CQRS.Queries;
+using T4T.CQRS.Tests.Fakes;
 using Xunit;
 using Log = Moq.Contrib.ExpressionBuilders.Logging.Log;
 

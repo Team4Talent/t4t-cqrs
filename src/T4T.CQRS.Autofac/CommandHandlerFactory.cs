@@ -19,12 +19,11 @@ namespace T4T.CQRS.Autofac
         public ICommandHandler<T> CreateCommandHandler<T>() 
             where T : class
         {
-            var commandHandler = _container.Resolve<ICommandHandler<T>>() ?? 
-                                 throw new ArgumentException($"Could not resolve an ICommandHandler for {typeof(T).Name}.", innerException: null);
-            var loggerFactory = _container.Resolve<ILoggerFactory>();
+            var commandHandler = _container.Resolve<ICommandHandler<T>>();
+                                 var loggerFactory = _container.Resolve<ILoggerFactory>();
 
-            return new ExceptionHandlingCommandHandler<T>(commandHandler)
-                .WithLogging(loggerFactory, LogLevel.Warning);
+            return new LoggingCommandHandler<T>(commandHandler, loggerFactory)
+                .WithExceptionHandling();
         }
     }
 }
