@@ -7,7 +7,7 @@ on:
     branches: [develop]
 
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-      - name: Setup netcoreapp3.1 (for testing)
+      - name: Setup netcoreapp3.1 (unit testing)
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
@@ -24,10 +24,5 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Test
         run: dotnet test --no-build --verbosity normal
