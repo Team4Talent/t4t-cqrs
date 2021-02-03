@@ -24,7 +24,7 @@ namespace T4T.CQRS.Autofac
             var queryHandler = _container.Resolve<IQueryHandler<TQuery, TResult>>();
             var loggerFactory = _container.Resolve<ILoggerFactory>();
 
-            return new LoggingQueryHandler<TQuery, TResult> (queryHandler, loggerFactory)
+            return new LoggingQueryHandler<TQuery, TResult>(queryHandler, loggerFactory)
                 .WithExceptionHandling();
         }
     }
