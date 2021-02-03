@@ -1,6 +1,6 @@
 # T4T.CQRS
 
-![example branch parameter](https://github.com/team4talent/t4t-cqrs/workflows/Github%20Actions/badge.svg?branch=main)
+![](https://github.com/team4talent/t4t-cqrs/workflows/develop/badge.svg?branch=develop)
 
 Contains infrastructure and fluent extensions to get started using the CQRS pattern.
 
