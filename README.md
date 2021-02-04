@@ -1,6 +1,7 @@
 # T4T.CQRS
 
 ![](https://github.com/team4talent/t4t-cqrs/workflows/develop/badge.svg?branch=develop)
+![](https://github.com/team4talent/t4t-cqrs/workflows/main/badge.svg?branch=main)
 
 Contains infrastructure and fluent extensions to get started using the CQRS pattern.
 
