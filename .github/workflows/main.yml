@@ -1,15 +1,10 @@
-name: develop
+name: main
 
 on:
   push:
     branches:
-      - develop
-  pull_request:
-    branches:
-      - develop
-    types:
-      - opened
-      - edited
+      - main
+      - "release/**"
 
 jobs:
   build_and_test:
@@ -28,7 +23,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --no-restore -c Release
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
@@ -44,9 +39,13 @@ jobs:
         with:
           versionSpec: "5.x"
       - name: Determine GitVersion
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0.9.7
         with:
           useConfigFile: true
       - name: Display SemVer
         run: |
           echo "SemVer: $GITVERSION_SEMVER"
+      - name: Create Tag
+        run: |
+          git tag -a $GITVERSION_SEMVER ${{ steps.gitversion.outputs.shortSha }}
