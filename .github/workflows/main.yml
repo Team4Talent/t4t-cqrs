@@ -43,9 +43,17 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
         with:
           useConfigFile: true
-      - name: Display SemVer
-        run: |
-          echo "SemVer: $GITVERSION_SEMVER"
-      - name: Create Tag
-        run: |
-          git tag -a $GITVERSION_SEMVER ${{ steps.gitversion.outputs.shortSha }}
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: $GITVERSION_SEMVER
+          release_name: Release $GITVERSION_SEMVER
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+            - To do: changelog
+          draft: true
+          prerelease: startsWith(${GITHUB_REF##*/}, 'release/')
