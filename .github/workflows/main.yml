@@ -43,8 +43,6 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
         with:
           useConfigFile: true
-      - name: Debug github ref
-        run: echo "${{ github.ref }}"
       - name: Create Release
         uses: actions/create-release@v1
         env:
@@ -53,4 +51,4 @@ jobs:
           tag_name: ${{ steps.gitversion.outputs.semVer }}"
           release_name: Release ${{ steps.gitversion.outputs.semVer }}
           draft: false
-          prerelease: startsWith('${{ github.ref }}', 'release/')
+          prerelease: startsWith('${{ github.ref }}', 'refs/heads/release/')
