@@ -23,7 +23,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build --no-restore -c Release
+        run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
@@ -50,10 +50,5 @@ jobs:
         with:
           tag_name: ${{ steps.gitversion.outputs.semVer }}"
           release_name: Release ${{ steps.gitversion.outputs.semVer }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-            - To do: changelog
           draft: true
           prerelease: true
