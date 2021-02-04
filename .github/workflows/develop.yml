@@ -33,6 +33,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: git fetch
+        run: git fetch
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
