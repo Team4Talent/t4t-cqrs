@@ -36,12 +36,14 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
           versionSpec: "5.x"
-      - name: Determine GitVersion
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.7
-        with:
-          useConfigFile: true
-          configFilePath: "GitVersion.yml"
-      - name: Display SemVer
-        run: |
-          echo: "${{ steps.gitversion.outputs.semVer }}"
+      - name: Determine working folder
+        run: ls
+      # - name: Determine GitVersion
+      #   id: gitversion
+      #   uses: gittools/actions/gitversion/execute@v0.9.7
+      #   with:
+      #     useConfigFile: true
+      #     configFilePath: "GitVersion.yml"
+      # - name: Display SemVer
+      #   run: |
+      #     echo: "${{ steps.gitversion.outputs.semVer }}"
