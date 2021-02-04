@@ -27,7 +27,7 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
 
-  gitversion:
+  create_release:
     runs-on: ubuntu-latest
 
     steps:
