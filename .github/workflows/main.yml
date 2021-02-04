@@ -48,12 +48,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $GITVERSION_SEMVER
-          release_name: Release $GITVERSION_SEMVER
+          tag_name: ${{ steps.gitversion.outputs.semVer }}"
+          release_name: Release ${{ steps.gitversion.outputs.semVer }}
           body: |
             Changes in this Release
             - First Change
             - Second Change
             - To do: changelog
           draft: true
-          prerelease: startsWith(${GITHUB_REF##*/}, 'release/')
+          prerelease: true
