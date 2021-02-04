@@ -5,6 +5,7 @@ on:
     branches: [develop]
   pull_request:
     branches: [develop]
+    types: [opened, edited]
 
 jobs:
   build_and_test:
@@ -40,6 +41,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
         with:
           useConfigFile: true
+          configFilePath: "GitVersion.yml"
       - name: Display SemVer
         run: |
           echo: "${{ steps.gitversion.outputs.semVer }}"
