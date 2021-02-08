@@ -47,4 +47,4 @@ jobs:
       - name: Pack it up, pack it in (let me begin)
         run: dotnet pack --configuration release
       - name: push
-        run: dotnet nuget push "bin/Release/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}" --api-key ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push "bin/Release/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}" --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
