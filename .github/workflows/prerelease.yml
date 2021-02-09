@@ -34,6 +34,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pre_release_branches: release.*
           append_to_pre_release_tag: rc
+          tag_prefix: ""
 
   release_t4t_cqrs:
     runs-on: ubuntu-latest
