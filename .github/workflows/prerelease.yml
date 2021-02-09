@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       taggedversion: ${{ steps.tag_version.outputs.new_tag }}
+      changelog: ${{ steps.tag_version.outputs.changelog }}
 
     steps:
       - uses: actions/checkout@v2
@@ -47,8 +48,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.gitversion.outputs.semVer }}"
-          release_name: Release ${{ steps.gitversion.outputs.semVer }}
+          tag_name: ${{ needs.build_and_test.outputs.taggedversion }}
+          release_name: Release ${{ needs.build_and_test.outputs.taggedversion }}
+          body: ${{ needs.build_and_test.outputs.changelog }}
           prerelease: true
 
   publish_t4t_cqrs:
