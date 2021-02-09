@@ -48,4 +48,4 @@ jobs:
       - name: Pack it up, pack it in (let me begin)
         run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }}
       - name: push
-        run: dotnet nuget push "bin/Release/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}" --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/team4talent/index.json
+        run: dotnet nuget push "bin/release/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}" --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/team4talent/index.json
