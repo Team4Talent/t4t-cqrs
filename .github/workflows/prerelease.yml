@@ -45,14 +45,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup dotnet 5.0
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-          source-url: https://nuget.pkg.github.com/team4talent/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Pack it up, pack it in (let me begin)
         run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
-      - name: push
-        run: dotnet nuget push "./lib/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key 46bc5eed22982bd7d23cdd96e03bfa9c587b8cd5 --source "github" --skip-duplicate --no-symbols 1
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
