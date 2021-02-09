@@ -46,6 +46,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Pack it up, pack it in (let me begin)
-        run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }}
+        run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
       - name: push
-        run: dotnet nuget push "bin/release/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}" --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/team4talent/index.json
+        run: dotnet nuget push "./lib/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}" --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/team4talent/index.json
