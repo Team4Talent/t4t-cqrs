@@ -37,12 +37,7 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
           versionSpec: "5.x"
-      - name: Determine GitVersion
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.7
-        with:
-          useConfigFile: true
-      - name: Create Release
+      - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
