@@ -44,6 +44,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Debug function
+        run: |
+          echo "github.ref = ${{ github.ref }}"
+          echo contains( "release", ${{ github.ref }} )
+          echo contains( "release", github.ref )
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
