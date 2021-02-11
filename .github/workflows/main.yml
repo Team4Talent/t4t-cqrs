@@ -52,7 +52,7 @@ jobs:
           tag_name: ${{ needs.build_and_test.outputs.taggedversion }}
           release_name: Release ${{ needs.build_and_test.outputs.taggedversion }}
           body: ${{ needs.build_and_test.outputs.changelog }}
-          prerelease: ${{ contains( github.ref, release ) }}
+          prerelease: ${{ contains( github.ref, 'release' ) }}
 
   publish_t4t_cqrs:
     runs-on: ubuntu-latest
