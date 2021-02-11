@@ -13,17 +13,15 @@ This repository contains the following projects:
 
 ## Packages
 
-`T4T.CQRS` is the core package that contains unopiniated infrastructure to build application with CQRS.
+`T4T.CQRS` is the core package that contains lightweight infrastructure and fluent extensions to build application with CQRS.
 
-`T4T.CQRS.Api` adds utility classes to easily incorporate T4T.CQRS in an API application.
+`T4T.CQRS.Api` adds utility classes to easily and fluently incorporate T4T.CQRS in an API application.
 
 `T4T.CQRS.Autofac` is a provider for T4T.CQRS that uses Autofac to wire up implementations.
 
 ## Installation
 
-> No packages have yet been published.
-
-T4T.CQRS will be available on [NuGet](https://www.nuget.org) soon 🤞:
+T4T.CQRS is available on [NuGet](https://www.nuget.org/profiles/Team4Talent):
 
 ```shell
 dotnet add package T4T.CQRS
