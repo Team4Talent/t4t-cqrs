@@ -44,11 +44,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Debug function
-        run: |
-          echo "github.ref = ${{ github.ref }}"
-          echo contains( "release", ${{ github.ref }} )
-          echo contains( "release", github.ref )
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
@@ -57,7 +52,7 @@ jobs:
           tag_name: ${{ needs.build_and_test.outputs.taggedversion }}
           release_name: Release ${{ needs.build_and_test.outputs.taggedversion }}
           body: ${{ needs.build_and_test.outputs.changelog }}
-          prerelease: contains( "release", ${{ github.ref }} )
+          prerelease: contains( ${{ github.ref }}, "release" )
 
   publish_t4t_cqrs:
     runs-on: ubuntu-latest
