@@ -4,10 +4,14 @@ on:
   push:
     branches:
       - main
+      - "release/**"
 
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    outputs:
+      taggedversion: ${{ steps.tag_version.outputs.new_tag }}
+      changelog: ${{ steps.tag_version.outputs.changelog }}
 
     steps:
       - uses: actions/checkout@v2
@@ -25,24 +29,69 @@ jobs:
         run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pre_release_branches: release.*
+          append_to_pre_release_tag: rc
+          tag_prefix: ""
 
   create_release:
     runs-on: ubuntu-latest
+    needs: build_and_test
 
     steps:
       - uses: actions/checkout@v2
-      - name: git fetch
-        run: git fetch --unshallow
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.7
-        with:
-          versionSpec: "5.x"
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.gitversion.outputs.semVer }}"
-          release_name: Release ${{ steps.gitversion.outputs.semVer }}
-          draft: false
-          prerelease: startsWith('${{ github.ref }}', 'refs/heads/release/')
+          tag_name: ${{ needs.build_and_test.outputs.taggedversion }}
+          release_name: Release ${{ needs.build_and_test.outputs.taggedversion }}
+          body: ${{ needs.build_and_test.outputs.changelog }}
+          prerelease: contains( "release", ${{ github.ref }} )
+
+  publish_t4t_cqrs:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    defaults:
+      run:
+        working-directory: ./src/T4T.CQRS
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pack it up, pack it in (let me begin)
+        run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
+
+  publish_t4t_cqrs_api:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    defaults:
+      run:
+        working-directory: ./src/T4T.CQRS.Api
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pack it up, pack it in (let me begin)
+        run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.Api.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
+
+  publish_t4t_cqrs_autofac:
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    defaults:
+      run:
+        working-directory: ./src/T4T.CQRS.Autofac
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pack it up, pack it in (let me begin)
+        run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.Autofac.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
