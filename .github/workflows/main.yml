@@ -65,8 +65,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Pack it up, pack it in (let me begin)
         run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
-      # - name: push to nuget.org
-      #   run: dotnet nuget push "./lib/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
 
   publish_t4t_cqrs_api:
     runs-on: ubuntu-latest
@@ -79,8 +79,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Pack it up, pack it in (let me begin)
         run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
-      # - name: push to nuget.org
-      #   run: dotnet nuget push "./lib/T4T.CQRS.Api.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.Api.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
 
   publish_t4t_cqrs_autofac:
     runs-on: ubuntu-latest
@@ -93,5 +93,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Pack it up, pack it in (let me begin)
         run: dotnet pack --configuration release -p:PackageVersion=${{ needs.build_and_test.outputs.taggedversion }} -o ./lib
-      # - name: push to nuget.org
-      #   run: dotnet nuget push "./lib/T4T.CQRS.Autofac.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
+      - name: push to nuget.org
+        run: dotnet nuget push "./lib/T4T.CQRS.Autofac.${{ needs.build_and_test.outputs.taggedversion }}.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols 1
