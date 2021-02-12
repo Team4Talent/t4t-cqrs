@@ -5,18 +5,11 @@
     <LangVersion>Latest</LangVersion>
     <Authors>Benjamin Todts</Authors>
     <Company>Team4Talent</Company>
-    <Description>Light-weight infrastructure to get started using the CQRS pattern.</Description>
-    <PackageProjectUrl></PackageProjectUrl>
+    <Description>SOLID infrastructure to get started using the CQRS pattern.</Description>
     <RepositoryUrl>https://github.com/Team4Talent/t4t-cqrs</RepositoryUrl>
-    <Configurations>Debug;Release;Sample;Packages</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Sample|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
