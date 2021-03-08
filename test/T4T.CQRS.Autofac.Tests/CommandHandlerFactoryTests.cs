@@ -4,6 +4,7 @@ using Autofac.Core.Registration;
 using T4T.CQRS.Autofac.Tests.Fakes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using T4T.CQRS.Autofac.Tests.Fakes.Commands;
 using T4T.CQRS.Commands;
 using Xunit;
 
@@ -16,6 +17,8 @@ namespace T4T.CQRS.Autofac.Tests
         public CommandHandlerFactoryTests()
         {
             var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule<CQRSModule>();
+
             containerBuilder.RegisterType<FakeCommand1Handler>().As<ICommandHandler<FakeCommand1>>();
             containerBuilder.RegisterType<NullLoggerFactory>().As<ILoggerFactory>();
 

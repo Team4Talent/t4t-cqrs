@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using T4T.CQRS.Autofac.Tests.Fakes.Commands;
 using T4T.CQRS.Commands;
 using T4T.CQRS.Execution;
 

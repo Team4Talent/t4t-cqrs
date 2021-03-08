@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using T4T.CQRS.Autofac.Tests.Fakes.Queries;
 using T4T.CQRS.Queries;
 
 namespace T4T.CQRS.Autofac.Tests.Fakes

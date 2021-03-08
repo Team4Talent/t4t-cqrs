@@ -5,6 +5,7 @@ using Autofac.Core.Registration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using T4T.CQRS.Autofac.Tests.Fakes;
+using T4T.CQRS.Autofac.Tests.Fakes.Queries;
 using T4T.CQRS.Queries;
 using Xunit;
 
