@@ -9,7 +9,7 @@ using Module = Autofac.Module;
 namespace T4T.CQRS.Autofac
 {
     /// <summary>
-    ///     Register all the <see cref="ICommandHandler{T}"/>s and <see cref="IQueryHandler{T4T}"/>s in an assembly.
+    ///     Register all the <see cref="ICommandHandler{T}"/>s and <see cref="IQueryHandler{T, TResult}"/>s in an assembly.
     /// </summary>
     public class CQRSModule : Module
     {

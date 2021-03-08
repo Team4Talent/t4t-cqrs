@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Features.Indexed;
 using Moq;
 using T4T.CQRS.Autofac.Tests.Fakes;
+using T4T.CQRS.Autofac.Tests.Fakes.Commands;
 using T4T.CQRS.Commands.Factories;
 using Xunit;
 
